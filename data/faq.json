@@ -1,0 +1,92 @@
+[
+  {
+    "id": "login-01",
+    "category": "Login & Access",
+    "question": "I forgot my password and I am locked out of the EHR. What do I do?",
+    "answer": "Use the self-service password reset link on the login screen. If your account is locked after several failed attempts, call the Service Desk to unlock it. Have your employee ID ready. Never share your password with a coworker or support staff."
+  },
+  {
+    "id": "login-02",
+    "category": "Login & Access",
+    "question": "I can log in but I cannot see the patient list or the menu I need.",
+    "answer": "This usually means your account is missing a role or position. Check with your manager that the correct position was requested. Then submit an access ticket to the Service Desk with your name, unit, the screen you need, and a screenshot of what you see."
+  },
+  {
+    "id": "login-03",
+    "category": "Login & Access",
+    "question": "The badge tap or single sign-on is not working on the workstation.",
+    "answer": "Try tapping out and tapping in again. If it still fails, log in with your username and password and report the workstation name (on the sticker) to the Service Desk so the badge reader can be checked."
+  },
+  {
+    "id": "sched-01",
+    "category": "Scheduling",
+    "question": "How do I reschedule a patient appointment?",
+    "answer": "Open the appointment in the scheduling tool, choose Reschedule, select the new date and time, and enter a reason for the change. Confirm the new slot and print or send the updated appointment letter if your unit requires it."
+  },
+  {
+    "id": "sched-02",
+    "category": "Scheduling",
+    "question": "The system says the provider is double-booked. Can I still book the slot?",
+    "answer": "Only if your unit allows overbooking and you have the right permission. Otherwise, choose another open slot or contact the provider's clinic coordinator. Do not override the warning without approval."
+  },
+  {
+    "id": "reg-01",
+    "category": "Registration",
+    "question": "I registered a patient twice by mistake. How do I fix a duplicate record?",
+    "answer": "Do not try to delete either record. Stop charting on the newer record and report the duplicate to Health Information Management (HIM) with both medical record numbers. HIM will review and merge the records safely."
+  },
+  {
+    "id": "reg-02",
+    "category": "Registration",
+    "question": "How do I update a patient's address or phone number?",
+    "answer": "Open the patient's registration, choose Modify, update the demographics fields, and save. Confirm the change with the patient by reading the new details back to them."
+  },
+  {
+    "id": "inbox-01",
+    "category": "Message Center / Inbox",
+    "question": "How do I forward a result or message to another provider?",
+    "answer": "Open the item in your inbox, choose Forward, search for the provider by name, add a short comment, and send. The item stays in your history so you can track it."
+  },
+  {
+    "id": "inbox-02",
+    "category": "Message Center / Inbox",
+    "question": "My inbox shows items that are not mine. How do I remove them?",
+    "answer": "Check whether you are set as a proxy for another provider. Proxy items appear in your inbox until the proxy end date. Ask the provider or the Service Desk to remove or end the proxy if it is no longer needed."
+  },
+  {
+    "id": "chart-01",
+    "category": "Charting",
+    "question": "I documented on the wrong patient. How do I correct it?",
+    "answer": "Do not delete the note. Open it and use the In Error option with a reason, then document on the correct patient. Tell your charge nurse or manager, and follow your organization's incident reporting policy."
+  },
+  {
+    "id": "chart-02",
+    "category": "Charting",
+    "question": "The system froze while I was writing a note. Did I lose my work?",
+    "answer": "Many EHRs auto-save drafts. Log back in and check your saved or in-progress documents first. If the draft is missing, report the time and workstation to the Service Desk. Save often during long notes."
+  },
+  {
+    "id": "print-01",
+    "category": "Printing & Devices",
+    "question": "My labels or documents are not printing.",
+    "answer": "Check that the correct printer is selected and that it has paper and labels. Try printing a test page. If it still fails, report the printer name and workstation name to the Service Desk."
+  },
+  {
+    "id": "mobile-01",
+    "category": "Printing & Devices",
+    "question": "The EHR app on my unit iPhone or iPad will not open.",
+    "answer": "Close the app fully and reopen it. Check that the device is on the hospital Wi-Fi and has the latest app update. If it still fails, restart the device and contact the Service Desk with the device number."
+  },
+  {
+    "id": "downtime-01",
+    "category": "Downtime",
+    "question": "The EHR is down. What should I do?",
+    "answer": "Follow your unit's downtime procedure. Use the downtime viewer or printed reports to see recent patient information and document on paper downtime forms. When the system is back, enter the paper documentation as your policy requires."
+  },
+  {
+    "id": "support-01",
+    "category": "Getting Help",
+    "question": "How do I get help during go-live?",
+    "answer": "Look for the at-the-elbow (ATE) support staff on your unit, usually wearing a coloured vest or lanyard. You can also call the go-live command centre or the Service Desk. Describe the screen, the steps you took, and any error message."
+  }
+]

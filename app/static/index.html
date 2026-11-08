@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EHR Support Assistant</title>
+  <style>
+    :root { --bg:#f4f6f9; --card:#fff; --text:#161616; --muted:#5a6270; --accent:#0f62fe; --border:#dde1e6; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: "IBM Plex Sans", system-ui, sans-serif; background:var(--bg); color:var(--text); }
+    header { background:#161616; color:#fff; padding:16px 20px; }
+    header h1 { margin:0; font-size:18px; font-weight:600; }
+    header p { margin:4px 0 0; font-size:13px; color:#c6c6c6; }
+    main { max-width:760px; margin:0 auto; padding:20px 16px; }
+    #chat { display:flex; flex-direction:column; gap:12px; min-height:300px; }
+    .msg { padding:12px 14px; border-radius:8px; line-height:1.5; max-width:90%; }
+    .user { align-self:flex-end; background:var(--accent); color:#fff; }
+    .bot { align-self:flex-start; background:var(--card); border:1px solid var(--border); }
+    .sources { margin-top:8px; font-size:12px; color:var(--muted); }
+    .chips { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0; }
+    .chips button { border:1px solid var(--border); background:var(--card); border-radius:16px; padding:6px 12px; font-size:13px; cursor:pointer; }
+    form { display:flex; gap:8px; margin-top:16px; }
+    input { flex:1; padding:12px; border:1px solid var(--border); border-radius:6px; font-size:15px; }
+    form button { background:var(--accent); color:#fff; border:0; border-radius:6px; padding:0 18px; font-size:15px; cursor:pointer; }
+    footer { font-size:12px; color:var(--muted); text-align:center; padding:16px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>EHR Support Assistant</h1>
+    <p>Ask a how-to question about logins, scheduling, registration, inbox or charting.</p>
+  </header>
+  <main>
+    <div class="chips" id="chips">
+      <button>I'm locked out of the EHR</button>
+      <button>How do I reschedule an appointment?</button>
+      <button>I registered a patient twice</button>
+      <button>The system is down</button>
+    </div>
+    <div id="chat"></div>
+    <form id="form">
+      <input id="q" placeholder="Type your question..." autocomplete="off" maxlength="500" />
+      <button type="submit">Ask</button>
+    </form>
+  </main>
+  <footer id="engine">Demo with sample articles. Do not enter passwords or patient information.</footer>
+  <script>
+    const chat = document.getElementById("chat");
+    const input = document.getElementById("q");
+
+    function add(text, cls, sources) {
+      const div = document.createElement("div");
+      div.className = "msg " + cls;
+      div.textContent = text;
+      if (sources && sources.length) {
+        const s = document.createElement("div");
+        s.className = "sources";
+        s.textContent = "Sources: " + sources.map(x => x.category + " (" + x.id + ")").join(", ");
+        div.appendChild(s);
+      }
+      chat.appendChild(div);
+      div.scrollIntoView({ behavior: "smooth" });
+    }
+
+    async function ask(question) {
+      add(question, "user");
+      try {
+        const res = await fetch("/ask", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ question })
+        });
+        if (!res.ok) throw new Error("Request failed");
+        const data = await res.json();
+        add(data.answer, "bot", data.sources);
+      } catch (e) {
+        add("Sorry, something went wrong. Please try again.", "bot");
+      }
+    }
+
+    document.getElementById("form").addEventListener("submit", e => {
+      e.preventDefault();
+      const q = input.value.trim();
+      if (q.length >= 3) { ask(q); input.value = ""; }
+    });
+    document.querySelectorAll("#chips button").forEach(b => b.addEventListener("click", () => ask(b.textContent)));
+
+    fetch("/health").then(r => r.json()).then(h => {
+      document.getElementById("engine").textContent =
+        "Engine: " + (h.engine === "watsonx" ? "IBM watsonx.ai" : "offline (knowledge base only)") +
+        " · " + h.articles + " sample articles · Do not enter passwords or patient information.";
+    }).catch(() => {});
+  </script>
+</body>
+</html>
